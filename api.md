@@ -19,16 +19,52 @@ Fetch access keys for a board using `GET /api/1.0/whiteboards/$board_id/access_k
 
 Construct the URL for a whiteboard like this: `https://browserboard.com/whiteboard/$board_id?access_key=$access_key`
 
-Use this HTML:
+Use this HTML, with your own values for width, height, and style:
 
-```
+```html
 <iframe
-  src="https://browserboard.com/whiteboard/52hTQVtV9mHqg3aKxnkhQ2?key=2btG73hGSCrnN9ZkH2vA32"
+  id="browserboard"
+  src="https://browserboard.com/whiteboard/$board_id?access_key=$access_key"
   allow="fullscreen"
   sandbox="allow-pointer-lock allow-same-origin allow-scripts allow-forms"
   title="Embedded whiteboard"
   width="1024"
   height="768"
   style="border: 1px solid black"
-    ></iframe>
+></iframe>
+```
+
+# Downloading images
+
+Once you have the whiteboard loaded in an iframe, you can ask it to render you a PNG of its contents. You do this using the `postMessage` API provided by web browsers to communicate between windows.
+
+First, listen for your own message events so you can get communication from the iframe:
+
+```js
+window.addEventListener("message", (e) => {
+  console.log("MESSAGE:", e.data);
+});
+```
+
+Then, make a request like this:
+
+```js
+const iframe = document.querySelector("iframe#browserboard");
+iframe.contentWindow.postMessage(
+  { action: "downloadImage" },
+  "http://localhost:8000"
+);
+```
+
+Right now, there are two possible message types.
+
+```js
+{
+    "action": "updateDownloadImageProgress",
+    "progress": number,
+}
+{
+    "action": "downloadImageComplete",
+    "url": string, // this is a data URL
+}
 ```
