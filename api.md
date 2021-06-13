@@ -52,7 +52,7 @@ Then, make a request like this:
 const iframe = document.querySelector("iframe#browserboard");
 iframe.contentWindow.postMessage(
   { action: "downloadImage" },
-  "http://localhost:8000"
+  "https://browserboard.com"
 );
 ```
 
