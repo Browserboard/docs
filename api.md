@@ -68,3 +68,27 @@ Right now, there are two possible message types.
     "url": string, // this is a data URL
 }
 ```
+
+# Configuring colors, line widths, tools, and more
+
+You can configure a few of Browserboard's features using the URL hash. Here is a comprehensive example:
+
+`#colors=%23f00,%2300f&strokeWidths=2,3,4,20&defaultLineCap=square&tools=line,select&isZoomAllowed=false`
+
+- `colors`: Comma-separated list of colors. Make sure to escape `#` characters as `%23`.
+- `strokeWidths`: Comma-separated list of stroke widths.
+- `defaultLineCap`: `round`, `butt`, or `square`. Google "MDN linecap" for details. Browserboard's default is `round`.
+- `tools`: Comma-separated list of tools to display. Possible values are:
+  - `arrow`
+  - `line`
+  - `pan`
+  - `pen`
+  - `marker`
+  - `rect`
+  - `diamond`
+  - `ellipse`
+  - `select`
+  - `eraser`
+  - `text`
+  - `sticky`
+- `isZoomAllowed`: If `false`, zoom controls are disabled.
