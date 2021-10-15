@@ -92,3 +92,23 @@ You can configure a few of Browserboard's features using the URL hash. Here is a
   - `text`
   - `sticky`
 - `isZoomAllowed`: If `false`, zoom controls are disabled.
+
+# Inserting images and PDFs
+
+To insert an image into the board, call this method on your iframe instance. The value of `url` must point to an image that already exists on the web.
+
+```js
+iframe.contentWindow.postMessage(
+  { action: "insertImage", url: "https://the/image/url" },
+  "https://browserboard.com"
+);
+```
+
+To insert a PDF, use this message. Browserboard will prompt the user for a page range.
+
+```js
+iframe.contentWindow.postMessage(
+  { action: "insertPDF", url: "https://the/pdf/url" },
+  "https://browserboard.com"
+);
+```
