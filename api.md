@@ -34,6 +34,8 @@ Use this HTML, with your own values for width, height, and style:
 ></iframe>
 ```
 
+Note that _only_ whiteboards created using the API may be embedded. This limitation is a little arbitrary; it mostly exists to ensure we have a small amount of control over people embedding boards.
+
 # Downloading images
 
 Once you have the whiteboard loaded in an iframe, you can ask it to render you a PNG of its contents. You do this using the `postMessage` API provided by web browsers to communicate between windows.
