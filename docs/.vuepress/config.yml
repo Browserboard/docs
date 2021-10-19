@@ -1,0 +1,9 @@
+title: "Browserboard API Documentation"
+base: "/docs/"
+themeConfig:
+  sidebar:
+    - "/"
+    - "/api_access"
+    - "/api"
+    - "/embedding"
+    - "/messages"
