@@ -21,7 +21,7 @@ Use this HTML, with your own values for width, height, and style:
 
 Note that _only_ whiteboards created using the API may be embedded. This limitation is a little arbitrary; it mostly exists to ensure we have a small amount of control over people embedding boards
 
-## IFrame tag details
+## iframe tag details
 
 ### Customizable attributes
 

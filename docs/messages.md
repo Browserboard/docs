@@ -6,7 +6,7 @@ This page assumes you've added an `iframe` to your HTML as described in [the emb
 const iframeElement = document.getElementById("browserboard");
 ```
 
-IFrames allow two-way communication. To get a message in, you use the [`postMessage`](https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage) method on your iframe element. To get messages out, you listen to the [`"message"`](https://developer.mozilla.org/en-US/docs/Web/API/Window/message_event) event on `window`. Browserboard uses both of these things to communicate with your code in the web browser.
+Iframes allow two-way communication. To get a message in, you use the [`postMessage`](https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage) method on your iframe element. To get messages out, you listen to the [`"message"`](https://developer.mozilla.org/en-US/docs/Web/API/Window/message_event) event on `window`. Browserboard uses both of these things to communicate with your code in the web browser.
 
 The "in" and "out" message objects both use `"action"` as an object key representing what should be done. You can "send a message" to Browserboard or "receive a message" from Browserboard, and the "action" tells us what to do with the message.
 
