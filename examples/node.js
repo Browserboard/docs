@@ -49,10 +49,9 @@ class BrowserboardAPI {
   }
 }
 
-console.log(JSON.stringify(process.argv));
 const api = new BrowserboardAPI(process.argv[2]);
-// api.createWhiteboard(process.argv[3]).then((rsp) => {
-// console.log("Results:");
-// console.log(JSON.stringify(rsp, null, "  "));
-// });
-api.getRequest("/api/1.0/whiteboards/GcYeT5bqSg9s297hvDcx6S/access_keys", {});
+api.createWhiteboard(process.argv[3]).then((rsp) => {
+  console.log("Results:");
+  console.log(JSON.stringify(rsp, null, "  "));
+});
+// api.getRequest("/api/1.0/whiteboards/", {});

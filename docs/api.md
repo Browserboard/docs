@@ -34,3 +34,50 @@ Creating a whiteboard and constructing its URL is a two-step process.
 ### `/api/1.0/whiteboards/<wbid>/access_keys`
 
 - GET: list access keys and all share URLs for one whiteboard
+
+## Output of the `node.js` example
+
+```
+> npm install
+> node examples/node.js $API_TOKEN "Demo whiteboard"
+/api/1.0/whiteboards/
+{
+  "name": "Demo whiteboard",
+  "is_template": false,
+  "wbid": "...",
+  "t_created": "2021-10-19T23:08:26.205543Z",
+  "t_updated": "2021-10-19T23:08:26.205551Z",
+  "thumbnail_url": null,
+  "absolute_url": "/whiteboard/..."
+}
+/api/1.0/whiteboards/.../access_keys
+{
+  "access_keys": {
+    "view": "...",
+    "contribute": "...",
+    "admin": "..."
+  },
+  "share_urls": {
+    "view": "https://browserboard.com/whiteboard/...?access_key=...",
+    "contribute": "https://browserboard.com/whiteboard/...?access_key=...",
+    "admin": "https://browserboard.com/whiteboard/...?access_key=..."
+  }
+}
+Results:
+{
+  "board": {
+    "name": "Demo whiteboard",
+    "is_template": false,
+    "wbid": "...",
+    "t_created": "2021-10-19T23:08:26.205543Z",
+    "t_updated": "2021-10-19T23:08:26.205551Z",
+    "thumbnail_url": null,
+    "absolute_url": "/whiteboard/..."
+  },
+  "shareURLs": {
+    "view": "https://browserboard.com/whiteboard/...?access_key=...",
+    "contribute": "https://browserboard.com/whiteboard/...?access_key=...",
+    "admin": "https://browserboard.com/whiteboard/...?access_key=..."
+  }
+}
+```
