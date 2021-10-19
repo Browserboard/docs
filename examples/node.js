@@ -6,7 +6,6 @@ class BrowserboardAPI {
   constructor(apiToken) {
     this.apiToken = apiToken;
     this.baseURL = "https://browserboard.com";
-    this.baseURL = "http://localhost:8000";
     this.headers = {
       Authorization: `token ${this.apiToken}`,
     };
