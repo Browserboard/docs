@@ -23,8 +23,6 @@ Note that _only_ whiteboards created using the API may be embedded. This limitat
 
 ## iframe tag details
 
-### Customizable attributes
-
 `id`, `title`, `width`, `height`, and `style` can all be changed to fit in with your site.
 
 `src` must be a valid URL from the `share_urls` object on [the `access_keys` API](/api.md#api-1-0-whiteboards-wbid-access-keys).
