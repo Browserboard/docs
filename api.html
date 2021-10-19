@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>API usage | Browserboard API Documentation</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    
+    <meta name="description" content="">
+    
+    <link rel="preload" href="/docs/assets/css/0.styles.52bb2005.css" as="style"><link rel="preload" href="/docs/assets/js/app.e2f169eb.js" as="script"><link rel="preload" href="/docs/assets/js/2.5164d433.js" as="script"><link rel="preload" href="/docs/assets/js/8.761e7274.js" as="script"><link rel="prefetch" href="/docs/assets/js/10.d0a9ca2c.js"><link rel="prefetch" href="/docs/assets/js/11.62dff6fa.js"><link rel="prefetch" href="/docs/assets/js/3.b004bcdd.js"><link rel="prefetch" href="/docs/assets/js/4.b5c5d85a.js"><link rel="prefetch" href="/docs/assets/js/5.aedbb9bc.js"><link rel="prefetch" href="/docs/assets/js/6.7dd3e1f3.js"><link rel="prefetch" href="/docs/assets/js/7.9e5716e6.js"><link rel="prefetch" href="/docs/assets/js/9.20f11145.js">
+    <link rel="stylesheet" href="/docs/assets/css/0.styles.52bb2005.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/docs/" class="home-link router-link-active"><!----> <span class="site-name">Browserboard API Documentation</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <!----></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><!---->  <ul class="sidebar-links"><li><a href="/docs/" aria-current="page" class="sidebar-link">Home</a></li><li><a href="/docs/api_access.html" class="sidebar-link">API access</a></li><li><a href="/docs/api.html" aria-current="page" class="active sidebar-link">API usage</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/docs/api.html#authenticating" class="sidebar-link">Authenticating</a></li><li class="sidebar-sub-header"><a href="/docs/api.html#example" class="sidebar-link">Example</a></li><li class="sidebar-sub-header"><a href="/docs/api.html#creating-a-whiteboard" class="sidebar-link">Creating a whiteboard</a></li><li class="sidebar-sub-header"><a href="/docs/api.html#reference" class="sidebar-link">Reference</a></li><li class="sidebar-sub-header"><a href="/docs/api.html#output-of-the-node-js-example" class="sidebar-link">Output of the node.js example</a></li></ul></li><li><a href="/docs/embedding.html" class="sidebar-link">Embedding whiteboards</a></li><li><a href="/docs/messages.html" class="sidebar-link">Iframe API</a></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="api-usage"><a href="#api-usage" class="header-anchor">#</a> API usage</h1> <p>Note that <strong>it is not possible to call the API from a web browser.</strong> You must do it on the server due to CORS restrictions. This is good for you because it forces you to keep your API token a secret; if Browserboard allowed API requests from web browsers, users would be able to trivially discover your private API token.</p> <h2 id="authenticating"><a href="#authenticating" class="header-anchor">#</a> Authenticating</h2> <p>For each request you make to the Browserboard API, pass a header <code>Authorization=Token $YOUR_TOKEN</code>.</p> <h2 id="example"><a href="#example" class="header-anchor">#</a> Example</h2> <p>You can see a complete example of creating a whiteboard in <a href="https://github.com/Browserboard/docs/tree/main/examples/node.js" target="_blank" rel="noopener noreferrer">this node.js example<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a>. Feel free to write in and request additional examples.</p> <h2 id="creating-a-whiteboard"><a href="#creating-a-whiteboard" class="header-anchor">#</a> Creating a whiteboard</h2> <p>Creating a whiteboard and constructing its URL is a two-step process.</p> <ol><li>Make a POST request to <code>/api/1.0/whiteboards/</code> with the <code>name</code> parameter. Store the response and extract the <code>wbid</code> field.</li> <li>Make a GET request to <code>/api/1.0/whiteboards/&lt;wbid&gt;/access_keys</code>. Use the approprate URL from the <code>share_urls</code> dictionary.</li></ol> <h2 id="reference"><a href="#reference" class="header-anchor">#</a> Reference</h2> <h3 id="api-1-0-whiteboards"><a href="#api-1-0-whiteboards" class="header-anchor">#</a> <code>/api/1.0/whiteboards/</code></h3> <ul><li>GET: list all whiteboards</li> <li>POST: create a new whiteboard
+<ul><li><code>name</code>: Name of the new whiteboard</li></ul></li></ul> <h3 id="api-1-0-whiteboards-wbid"><a href="#api-1-0-whiteboards-wbid" class="header-anchor">#</a> <code>/api/1.0/whiteboards/&lt;wbid&gt;</code></h3> <ul><li>GET: list details for one whiteboard</li> <li>PUT: update a whiteboard
+<ul><li><code>name</code>: Name of the new whiteboard</li></ul></li></ul> <h3 id="api-1-0-whiteboards-wbid-access-keys"><a href="#api-1-0-whiteboards-wbid-access-keys" class="header-anchor">#</a> <code>/api/1.0/whiteboards/&lt;wbid&gt;/access_keys</code></h3> <ul><li>GET: list access keys and all share URLs for one whiteboard</li></ul> <h2 id="output-of-the-node-js-example"><a href="#output-of-the-node-js-example" class="header-anchor">#</a> Output of the <code>node.js</code> example</h2> <div class="language- extra-class"><pre class="language-text"><code>&gt; npm install
+&gt; node examples/node.js $API_TOKEN &quot;Demo whiteboard&quot;
+/api/1.0/whiteboards/
+{
+  &quot;name&quot;: &quot;Demo whiteboard&quot;,
+  &quot;is_template&quot;: false,
+  &quot;wbid&quot;: &quot;...&quot;,
+  &quot;t_created&quot;: &quot;2021-10-19T23:08:26.205543Z&quot;,
+  &quot;t_updated&quot;: &quot;2021-10-19T23:08:26.205551Z&quot;,
+  &quot;thumbnail_url&quot;: null,
+  &quot;absolute_url&quot;: &quot;/whiteboard/...&quot;
+}
+/api/1.0/whiteboards/.../access_keys
+{
+  &quot;access_keys&quot;: {
+    &quot;view&quot;: &quot;...&quot;,
+    &quot;contribute&quot;: &quot;...&quot;,
+    &quot;admin&quot;: &quot;...&quot;
+  },
+  &quot;share_urls&quot;: {
+    &quot;view&quot;: &quot;https://browserboard.com/whiteboard/...?access_key=...&quot;,
+    &quot;contribute&quot;: &quot;https://browserboard.com/whiteboard/...?access_key=...&quot;,
+    &quot;admin&quot;: &quot;https://browserboard.com/whiteboard/...?access_key=...&quot;
+  }
+}
+Results:
+{
+  &quot;board&quot;: {
+    &quot;name&quot;: &quot;Demo whiteboard&quot;,
+    &quot;is_template&quot;: false,
+    &quot;wbid&quot;: &quot;...&quot;,
+    &quot;t_created&quot;: &quot;2021-10-19T23:08:26.205543Z&quot;,
+    &quot;t_updated&quot;: &quot;2021-10-19T23:08:26.205551Z&quot;,
+    &quot;thumbnail_url&quot;: null,
+    &quot;absolute_url&quot;: &quot;/whiteboard/...&quot;
+  },
+  &quot;shareURLs&quot;: {
+    &quot;view&quot;: &quot;https://browserboard.com/whiteboard/...?access_key=...&quot;,
+    &quot;contribute&quot;: &quot;https://browserboard.com/whiteboard/...?access_key=...&quot;,
+    &quot;admin&quot;: &quot;https://browserboard.com/whiteboard/...?access_key=...&quot;
+  }
+}
+</code></pre></div></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/docs/api_access.html" class="prev">
+        API access
+      </a></span> <span class="next"><a href="/docs/embedding.html">
+        Embedding whiteboards
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/docs/assets/js/app.e2f169eb.js" defer></script><script src="/docs/assets/js/2.5164d433.js" defer></script><script src="/docs/assets/js/8.761e7274.js" defer></script>
+  </body>
+</html>
