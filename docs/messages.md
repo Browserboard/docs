@@ -117,3 +117,17 @@ To insert a PDF, use the `insertPDF` message. Browserboard will prompt the user 
 ```js
 sendBrowserboardMessage({ action: "insertPDF", url: "https://the/pdf/url" });
 ```
+
+## Customizing colors
+
+To replace the default colors with multiple groups of colors, use the `setCustomColors` message.
+
+```js
+sendBrowserboardMessage({
+  action: "setCustomColors",
+  colors: [
+    ["Group 1", ["red", "green"]],
+    ["Group 2", ["blue", "purple"]],
+  ],
+});
+```
