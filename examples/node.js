@@ -1,13 +1,15 @@
-// `npm install` or `yarn install` in the repo root, then run `node examples/node.js <your_api_token> <name_of_whiteboard>`.
+// `npm install` or `yarn install` in the repo root, then run:
+// `node examples/node.js <your_api_token> <name_of_whiteboard> [an existing board ID to copy from]`.
 
 const axios = require("axios").default;
 
 class BrowserboardAPI {
   constructor(apiToken) {
     this.apiToken = apiToken;
-    this.baseURL = "https://browserboard.com";
+    this.baseURL = "http://localhost:8000";
     this.headers = {
       Authorization: `token ${this.apiToken}`,
+      "Content-Type": "application/json; charset=utf-8",
     };
   }
 
@@ -48,9 +50,29 @@ class BrowserboardAPI {
   }
 }
 
-const api = new BrowserboardAPI(process.argv[2]);
-api.createWhiteboard(process.argv[3]).then((rsp) => {
-  console.log("Results:");
-  console.log(JSON.stringify(rsp, null, "  "));
-});
-// api.getRequest("/api/1.0/whiteboards/", {});
+async function runDemo() {
+  console.log(process.argv);
+  const api = new BrowserboardAPI(process.argv[2]);
+  console.log("Creating board");
+  const { board, shareURLs } = await api.createWhiteboard(process.argv[3]);
+
+  console.log(JSON.stringify(board, null, "  "));
+  console.log("Getting access keys");
+  const keys = await api.getRequest(
+    `/api/1.0/whiteboards/${board.wbid}/access_keys`
+  );
+  console.log(keys);
+
+  if (process.argv.length > 3) {
+    console.log("Copying events");
+    const copyResult = await api.postRequest(
+      `/api/1.0/whiteboards/${board.wbid}/copy_from_template`,
+      {
+        template_wbid: process.argv[4],
+      }
+    );
+    console.log(copyResult);
+  }
+}
+
+runDemo();

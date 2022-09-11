@@ -35,6 +35,11 @@ Creating a whiteboard and constructing its URL is a two-step process.
 
 - GET: list access keys and all share URLs for one whiteboard
 
+### `/api/1.0/whiteboards/<wbid>/copy_from_template`
+
+- POST: Copy another board's events into this board. Must include `template_id` in POST body. You must be the owner of both boards.
+  `template_id`: wbid of the whiteboard to copy from.
+
 ## Output of the `node.js` example
 
 ```

@@ -103,7 +103,7 @@ Then, wait for these messages:
 
 ## Inserting images and PDFs
 
-To insert an image into the board, use the `insertImage` message. The value of `url` must point to an image that already exists on the web.
+To insert an image into the board, use the `insertImage` message. The value of `url` must point to an image that already exists on the web, and it must have an `Access-Control-Allow-Origin` header that covers `browserboard.com`. (If you don't know what to do, just use `"*"`.)
 
 ```js
 sendBrowserboardMessage({
@@ -112,7 +112,7 @@ sendBrowserboardMessage({
 });
 ```
 
-To insert a PDF, use the `insertPDF` message. Browserboard will prompt the user for a page range to insert.
+To insert a PDF, use the `insertPDF` message. Browserboard will prompt the user for a page range to insert. The same note about `Access-Control-Allow-Origin` applies here as well.
 
 ```js
 sendBrowserboardMessage({ action: "insertPDF", url: "https://the/pdf/url" });
@@ -128,6 +128,32 @@ sendBrowserboardMessage({
   colors: [
     ["Group 1", ["red", "green"]],
     ["Group 2", ["blue", "purple"]],
+  ],
+});
+```
+
+## Customizing stamps
+
+To include the stamp tool in the UI, add `imageLibrary` to the list of tools.
+
+To replace the set of stamps available to users, use the `setStamps` message.
+
+```js
+sendBrowserboardMessage({
+  action: "setStamps",
+  stamps: [
+    // You may pass multiple sections for stamps. The name is the section heading.
+    // Names must be unique.
+    {
+      name: "Custom stamps",
+      images: [
+        {
+          // You must include the URL and size with each image.
+          url: "https://example.com/images/stamp.png",
+          size: { x: 128, y: 128 },
+        },
+      ],
+    },
   ],
 });
 ```
